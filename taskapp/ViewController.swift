@@ -18,6 +18,7 @@
 
 
 import UIKit
+import RealmSwift // (6.6)
 
 //テーブルビューのデリゲート設定
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -29,6 +30,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     //テーブルビューのOutlet
     @IBOutlet weak var O_TableView: UITableView!
 
+//--Realmインスタンス----------------------------------
+    let L_Realm = try! Realm()
+    
+//--DB内のタスク格納リスト/日付近い順で降順、内容自動更新-----
+    var V_taskArray = try! Realm().objects(Task.self).sorted(byKeyPath: "date", ascending: false)
+    
+    
 //==================================================
 //  関数(ライフサイクル)
 //==================================================
