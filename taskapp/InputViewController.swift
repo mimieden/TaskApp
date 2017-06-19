@@ -31,7 +31,13 @@ class InputViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        // 背景をタップしたらdismissKeyboardメソッドを呼ぶように設定する
+        let l_TapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(F_DismissKeyboard))
+        self.view.addGestureRecognizer(l_TapGesture)
+        
+        O_TitleTextField.text = V_Task.title
+        O_ContentsTextView.text = V_Task.contents
+        O_DatePicker.date = V_Task.date as Date
     }
     
 //--------------------------------------------------
@@ -41,14 +47,12 @@ class InputViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+//==================================================
+//  関数(その他)
+//==================================================
+//--------------------------------------------------
+    func F_DismissKeyboard() {
+        //キーボードを閉じる
+        view.endEditing(true)
     }
-    */
-
 }
