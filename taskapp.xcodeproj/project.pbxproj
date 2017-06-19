@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1DCFF7F51EF81B89008D7EDF /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCFF7F41EF81B89008D7EDF /* Task.swift */; };
 		1DEA6FD01EF7F864008CD7EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEA6FCF1EF7F864008CD7EE /* AppDelegate.swift */; };
 		1DEA6FD21EF7F864008CD7EE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEA6FD11EF7F864008CD7EE /* ViewController.swift */; };
 		1DEA6FD51EF7F864008CD7EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DEA6FD31EF7F864008CD7EE /* Main.storyboard */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1DCFF7F41EF81B89008D7EDF /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		1DEA6FCC1EF7F864008CD7EE /* taskapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = taskapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DEA6FCF1EF7F864008CD7EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1DEA6FD11EF7F864008CD7EE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 				1DEA6FCF1EF7F864008CD7EE /* AppDelegate.swift */,
 				1DEA6FD11EF7F864008CD7EE /* ViewController.swift */,
 				1DEA6FE31EF808D6008CD7EE /* InputViewController.swift */,
+				1DCFF7F41EF81B89008D7EDF /* Task.swift */,
 				1DEA6FD31EF7F864008CD7EE /* Main.storyboard */,
 				1DEA6FD61EF7F864008CD7EE /* Assets.xcassets */,
 				1DEA6FD81EF7F864008CD7EE /* LaunchScreen.storyboard */,
@@ -214,6 +217,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1DCFF7F51EF81B89008D7EDF /* Task.swift in Sources */,
 				1DEA6FE41EF808D6008CD7EE /* InputViewController.swift in Sources */,
 				1DEA6FD21EF7F864008CD7EE /* ViewController.swift in Sources */,
 				1DEA6FD01EF7F864008CD7EE /* AppDelegate.swift in Sources */,
