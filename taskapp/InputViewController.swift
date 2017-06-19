@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift    // 追加する
 
 class InputViewController: UIViewController {
 
@@ -23,6 +24,7 @@ class InputViewController: UIViewController {
     
 //--------------------------------------------------
     var V_Task: Task!   // 追加する
+    let L_Realm = try! Realm()
     
 //==================================================
 //  関数(ライフサイクル)
@@ -39,9 +41,22 @@ class InputViewController: UIViewController {
         O_ContentsTextView.text = V_Task.contents
         O_DatePicker.date = V_Task.date as Date
     }
+
+//--Viewが消える前------------------------------------
+    // 追加する
+    override func viewWillDisappear(_ animated: Bool) {
+        try! L_Realm.write {
+            self.V_Task.title = self.O_TitleTextField.text!
+            self.V_Task.contents = self.O_ContentsTextView.text
+            self.V_Task.date = self.O_DatePicker.date as NSDate
+            self.L_Realm.add(self.V_Task, update: true)
+        }
+        
+        super.viewWillDisappear(animated)
+    }
     
 //--------------------------------------------------
-    override func didReceiveMemoryWarning() {
+    override func didReceiveMemoryWarning() {            //テキストでは削除されているが残しておく？
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
