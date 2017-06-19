@@ -10,12 +10,28 @@ import UIKit
 
 class InputViewController: UIViewController {
 
+//==================================================
+// グローバル変数/定数
+//==================================================
+//--Outlet(RestrationIDもセット!)---------------------
+    //タイトル(テキストフィールド)のOutlet
+    @IBOutlet weak var O_TitleTextField: UITextField!
+    //内容(TextView)のOutlet
+    @IBOutlet weak var O_ContentsTextView: UITextView!
+    //Date PickerのOutlet
+    @IBOutlet weak var O_DatePicker: UIDatePicker!
+    
+//==================================================
+//  関数(ライフサイクル)
+//==================================================
+//--View読み込み後------------------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-
+    
+//--------------------------------------------------
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

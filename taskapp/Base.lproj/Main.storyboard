@@ -95,7 +95,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Of-Te-kG7">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="O_TitleTextField" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Of-Te-kG7">
                                 <rect key="frame" x="16" y="105" width="343" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -107,7 +107,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="DSb-mV-OYU">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="O_ContentsTextView" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="DSb-mV-OYU">
                                 <rect key="frame" x="16" y="176" width="343" height="120"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -117,7 +117,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="M1w-hF-CPa">
+                            <datePicker contentMode="scaleToFill" restorationIdentifier="O_DatePicker" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="M1w-hF-CPa">
                                 <rect key="frame" x="0.0" y="306" width="375" height="120"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="pH6-DW-GOA"/>
@@ -144,6 +144,11 @@
                             <constraint firstItem="HbL-do-pnO" firstAttribute="top" secondItem="zML-UN-fg3" secondAttribute="bottom" constant="10" id="ycu-S8-5q3"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="O_ContentsTextView" destination="DSb-mV-OYU" id="HYS-rR-kkm"/>
+                        <outlet property="O_DatePicker" destination="M1w-hF-CPa" id="BFV-g3-d1w"/>
+                        <outlet property="O_TitleTextField" destination="2Of-Te-kG7" id="DkY-iF-PNQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tzn-7n-U0b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -166,23 +171,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8DK-MY-2Rg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="21.600000000000001" y="690.40479760119945"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="kaj-qS-n7L">
-            <objects>
-                <viewController id="HwE-Bx-a8Y" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="4b9-lW-5oM"/>
-                        <viewControllerLayoutGuide type="bottom" id="B2s-2o-G7I"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="iRs-Kr-QTp">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="C1F-xw-x6I" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
