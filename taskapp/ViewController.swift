@@ -13,7 +13,7 @@
 // ローカル定数   l_
 // 関数
 // 自由定義関数   F_ (ただし規定の関数はそのまま)
-// 規定関数 viewDidLoad() didReceiveMemoryWarning() tableView()
+// 規定関数 viewDidLoad() didReceiveMemoryWarning() tableView() performSegue()
 // Identifier   I_
 
 
@@ -69,6 +69,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //==UITableViewDelegateプロトコルのメソッド=============
 //--各セルを選択した時に実行されるメソッド-----------------
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "I_CellSegue",sender: nil)
     }
     
 //--セルが削除可能なことを伝えるメソッド-------------------
