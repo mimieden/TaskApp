@@ -119,7 +119,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let l_InputViewController:InputViewController = segue.destination as! InputViewController
         if segue.identifier == "I_CellSegue" {
             let l_IndexPath = self.O_TableView.indexPathForSelectedRow
-            l_InputViewController.V_Task = V_TaskArray[l_IndexPath!.row]  
+            if l_IndexPath != nil {                                          //nilでエラーになるので仮に追加
+              l_InputViewController.V_Task = V_TaskArray[l_IndexPath!.row]
+            }                                                                //nilでエラーになるので仮に追加
         } else {
             let l_Task = Task()
             l_Task.date = NSDate()

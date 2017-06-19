@@ -37,15 +37,17 @@ class InputViewController: UIViewController {
         let l_TapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(F_DismissKeyboard))
         self.view.addGestureRecognizer(l_TapGesture)
         
-        O_TitleTextField.text = V_Task.title
-        O_ContentsTextView.text = V_Task.contents
-        O_DatePicker.date = V_Task.date as Date
+        if V_Task != nil{                         //nilでエラーになるので仮に追加
+            O_TitleTextField.text = V_Task.title
+            O_ContentsTextView.text = V_Task.contents
+            O_DatePicker.date = V_Task.date as Date
+        }                                         //nilでエラーになるので仮に追加
     }
 
 //--Viewが消える前------------------------------------
     // 追加する
     override func viewWillDisappear(_ animated: Bool) {
-        try! L_Realm.write {
+        try! L_Realm.write {                              //ここでもnilが問題
             self.V_Task.title = self.O_TitleTextField.text!
             self.V_Task.contents = self.O_ContentsTextView.text
             self.V_Task.date = self.O_DatePicker.date as NSDate
