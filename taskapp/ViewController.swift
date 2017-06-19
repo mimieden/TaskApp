@@ -36,7 +36,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //--DB内のタスク格納リスト/日付近い順で降順、内容自動更新-----
     var V_TaskArray = try! Realm().objects(Task.self).sorted(byKeyPath: "date", ascending: false)
     
-    
 //==================================================
 //  関数(ライフサイクル)
 //==================================================
@@ -104,4 +103,25 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
         }
     }
+
+//==================================================
+//  関数(画面遷移)
+//==================================================
+//==segueで画面遷移するときに呼び出されるメソッド==========
+    override func prepare(for segue:UIStoryboardSegue, sender: Any?) {
+        let l_InputViewController:InputViewController = segue.destination as! InputViewController
+        if segue.identifier == "I_CellSegue" {
+            let l_IndexPath = self.O_TableView.indexPathForSelectedRow
+            l_InputViewController.task = V_TaskArray[l_IndexPath!.row]  //IVC.swiftのtask、V_Taskにするとエラー
+        } else {
+            let l_Task = Task()
+            l_Task.date = NSDate()
+            
+            if V_TaskArray.count != 0 {
+                l_Task.id = V_TaskArray.max(ofProperty: "id")! + 1
+            }
+            l_InputViewController.task = l_Task  //IVC.swiftのtask、V_Taskにするとエラー
+        }
+    }
+
 }
