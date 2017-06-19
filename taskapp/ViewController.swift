@@ -34,7 +34,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     let L_Realm = try! Realm()
     
 //--DB内のタスク格納リスト/日付近い順で降順、内容自動更新-----
-    var V_taskArray = try! Realm().objects(Task.self).sorted(byKeyPath: "date", ascending: false)
+    var V_TaskArray = try! Realm().objects(Task.self).sorted(byKeyPath: "date", ascending: false)
     
     
 //==================================================
@@ -62,16 +62,24 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //==UITableViewDataSourceプロトコルのメソッド===========
 //--データの数 (=セルの数)を返すメソッド------------------
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5                                           //仮置き、現時点では本当はreturn 0
+        return V_TaskArray.count //データの配列であるV_TaskArrayの要素数を返すようにします。
     }
 
 //--各セルの内容を返すメソッド---------------------------
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // 再利用可能な cell を得る
-        let l_cell = tableView.dequeueReusableCell(withIdentifier: "I_Cell", for: indexPath)
-        // 値を設定する.
-        l_cell.textLabel!.text = "Row \(indexPath.row)"    //仮置き、現時点では本当は不要
-        return l_cell
+        let l_Cell = tableView.dequeueReusableCell(withIdentifier: "I_Cell", for: indexPath)
+        // 値を設定する
+        let l_Task = V_TaskArray[indexPath.row]
+        l_Cell.textLabel?.text = l_Task.title
+        
+        let l_Formatter = DateFormatter()
+        l_Formatter.dateFormat = "yyyy-MM-dd HH:mm"
+        
+        let l_dateString:String = l_Formatter.string(from: l_Task.date as Date)
+        l_Cell.detailTextLabel?.text = l_dateString
+        
+        return l_Cell
     }
 
 //==UITableViewDelegateプロトコルのメソッド=============
@@ -86,6 +94,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
 //--Deleteボタンがおされたときに呼び出されるメソッド--------
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt
+        indexPath: IndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.delete {
+            //データベースから削除する
+            try! L_Realm.write {
+                self.L_Realm.delete(self.V_TaskArray[indexPath.row])
+                tableView.deleteRows(at: [indexPath as IndexPath], with: UITableViewRowAnimation.fade)
+            }
+        }
     }
 }
