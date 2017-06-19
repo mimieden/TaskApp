@@ -39,6 +39,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //==================================================
 //  関数(ライフサイクル)
 //==================================================
+//--View読み込み前------------------------------------
+    // 入力画面から戻ってきた時に TableView を更新させる
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        O_TableView.reloadData()
+    }
+    
 //--View読み込み後------------------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -112,7 +119,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let l_InputViewController:InputViewController = segue.destination as! InputViewController
         if segue.identifier == "I_CellSegue" {
             let l_IndexPath = self.O_TableView.indexPathForSelectedRow
-            l_InputViewController.task = V_TaskArray[l_IndexPath!.row]  //IVC.swiftのtask、V_Taskにするとエラー
+            l_InputViewController.V_Task = V_TaskArray[l_IndexPath!.row]  
         } else {
             let l_Task = Task()
             l_Task.date = NSDate()
@@ -120,7 +127,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             if V_TaskArray.count != 0 {
                 l_Task.id = V_TaskArray.max(ofProperty: "id")! + 1
             }
-            l_InputViewController.task = l_Task  //IVC.swiftのtask、V_Taskにするとエラー
+            l_InputViewController.V_Task = l_Task
         }
     }
 

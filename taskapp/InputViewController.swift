@@ -22,7 +22,7 @@ class InputViewController: UIViewController {
     @IBOutlet weak var O_DatePicker: UIDatePicker!
     
 //--------------------------------------------------
-    var task: Task!   // 追加する (V_TaskにするとVC.swiftでエラー)
+    var V_Task: Task!   // 追加する
     
 //==================================================
 //  関数(ライフサイクル)
