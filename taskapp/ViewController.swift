@@ -138,11 +138,29 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
 
-//==UISearchBarDelegateプロトコルのメソッド=============
 //--検索実施時の呼び出しメソッド *課題--------------------
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        //(仮)入力された検索後をprint
-        print(O_SearchBar.text as Any)
+        //サーチバーの編集終了 *課題
+        O_SearchBar.endEditing(true)
+        print(O_SearchBar.text as Any) //デバッグ用
+        
+        //表示用のタスク一覧 *課題
+        //.filterオプションを宣言時に仮置きするとfilterがうまくかかっていることが確認できた
+        //V_TaskArrayに入ったデータをO_TableViewに移して、リロードするのがうまく行っていない
+        if O_SearchBar.text == "" {  //未入力の場合は全てを表示する
+        } else {                     //入力がある場合は指定カテゴリのタスクのみ表示
+            V_TaskArray = try! Realm().objects(Task.self)
+                                      .sorted(byKeyPath: "date", ascending: false)
+                                      .filter("category == '/O_SearchBar.text'")
+
+            
+            //これがいるのか
+            //--データの数 (=セルの数)を返すメソッド------------------
+            //--各セルの内容を返すメソッド---------------------------
+            
+            //リロード
+            O_TableView.reloadData()
+        }
     }
 
     
