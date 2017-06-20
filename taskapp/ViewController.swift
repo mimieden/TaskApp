@@ -30,6 +30,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //--Outlet(RestrationIDもセット!)---------------------
     //テーブルビューのOutlet
     @IBOutlet weak var O_TableView: UITableView!
+    //サーチバーのOutlet *課題
+    @IBOutlet weak var O_SearchBar: UISearchBar!
 
 //--Realmインスタンス----------------------------------
     let L_Realm = try! Realm()
@@ -51,6 +53,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        //サーチバーのプレースホルダー設定 *課題
+        O_SearchBar.placeholder = "カテゴリを指定して絞り込み"
         
         //テーブルビューのデリゲート設定
         O_TableView.delegate = self                    //ユーザー操作
