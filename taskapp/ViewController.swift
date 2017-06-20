@@ -18,8 +18,8 @@
 
 
 import UIKit
-import RealmSwift // (6.6)
-import UserNotifications //追加
+import RealmSwift
+import UserNotifications
 
 //テーブルビューのデリゲート設定
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {

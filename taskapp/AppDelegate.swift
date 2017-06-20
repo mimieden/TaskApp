@@ -7,13 +7,12 @@
 //
 
 import UIKit
-import UserNotifications  //追加
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
-
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -22,11 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let l_Center = UNUserNotificationCenter.current()
         l_Center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
         }
-        l_Center.delegate = self; //追加
+        l_Center.delegate = self;
         return true
     }
     
-    // 追加
     // アプリがフォアグラウンドの時に通知を受け取ると呼ばれるメソッド
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler([.sound, .alert])
@@ -53,7 +51,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
 
 }
 
