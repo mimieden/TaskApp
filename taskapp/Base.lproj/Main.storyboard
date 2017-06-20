@@ -22,8 +22,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="vBx-yN-MVS">
+                                <rect key="frame" x="0.0" y="64" width="375" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="O_TableView" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4QB-kU-IzH">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="108" width="375" height="559"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="I_Cell" textLabel="agN-tP-my6" detailTextLabel="Ta1-EM-2Eg" style="IBUITableViewCellStyleSubtitle" id="P68-5c-ahv">
@@ -55,10 +59,13 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="4QB-kU-IzH" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="ON4-aj-fxx"/>
-                            <constraint firstItem="4QB-kU-IzH" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="nwS-eb-Vqh"/>
-                            <constraint firstAttribute="trailing" secondItem="4QB-kU-IzH" secondAttribute="trailing" id="w0Y-zV-DBv"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="4QB-kU-IzH" secondAttribute="bottom" id="zwY-2P-Kmk"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="4QB-kU-IzH" secondAttribute="bottom" id="6e9-dH-wVY"/>
+                            <constraint firstItem="4QB-kU-IzH" firstAttribute="top" secondItem="vBx-yN-MVS" secondAttribute="bottom" id="FkD-f8-4jN"/>
+                            <constraint firstItem="vBx-yN-MVS" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="VvC-2P-Cck"/>
+                            <constraint firstAttribute="trailing" secondItem="4QB-kU-IzH" secondAttribute="trailing" id="WEf-rD-GI6"/>
+                            <constraint firstItem="4QB-kU-IzH" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="diY-UE-1jN"/>
+                            <constraint firstAttribute="trailing" secondItem="vBx-yN-MVS" secondAttribute="trailing" id="lmT-7W-vSs"/>
+                            <constraint firstItem="vBx-yN-MVS" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="zXz-iF-yz6"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="vfG-F8-IAv">
@@ -75,7 +82,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="694" y="690"/>
+            <point key="canvasLocation" x="693.60000000000002" y="689.5052473763119"/>
         </scene>
         <!--Input View Controller-->
         <scene sceneID="24M-fF-i0y">
