@@ -141,7 +141,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //==UISearchBarDelegateプロトコルのメソッド=============
 //--検索実施時の呼び出しメソッド *課題--------------------
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        print("検索")
+        //(仮)入力された検索後をprint
+        print(O_SearchBar.text as Any)
     }
 
     
