@@ -22,7 +22,8 @@ import RealmSwift
 import UserNotifications
 
 //テーブルビューのデリゲート設定
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+//サーチバーのデリゲート設定 *課題
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,UISearchBarDelegate {
 
 //==================================================
 // グローバル変数/定数
@@ -60,6 +61,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         //テーブルビューのデリゲート設定
         O_TableView.delegate = self                    //ユーザー操作
         O_TableView.dataSource = self                  //データ表示
+        
+        //サーチバーのデリゲート設定 *課題
+        O_SearchBar.delegate = self
     }
 
 //--------------------------------------------------
@@ -134,6 +138,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
 
+//==UISearchBarDelegateプロトコルのメソッド=============
+//--検索実施時の呼び出しメソッド *課題--------------------
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        print("検索")
+    }
+
+    
 //==================================================
 //  関数(画面遷移)
 //==================================================
