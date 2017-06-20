@@ -89,61 +89,84 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="タイトル" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HbL-do-pnO">
-                                <rect key="frame" x="16" y="74" width="70" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="カテゴリ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1yv-mb-urn">
+                                <rect key="frame" x="16" y="74" width="343" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="O_TitleTextField" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Of-Te-kG7">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5yw-v5-YHp">
                                 <rect key="frame" x="16" y="105" width="343" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="内容" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PXi-rr-xc9">
-                                <rect key="frame" x="16" y="145" width="35" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="タイトル" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HbL-do-pnO">
+                                <rect key="frame" x="16" y="145" width="343" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="O_TitleTextField" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Of-Te-kG7">
+                                <rect key="frame" x="16" y="176" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="O_ContentsTextView" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="DSb-mV-OYU">
-                                <rect key="frame" x="16" y="176" width="343" height="120"/>
+                                <rect key="frame" x="16" y="246.5" width="343" height="120"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="120" id="WVY-aq-sDZ"/>
                                     <constraint firstAttribute="height" constant="120" id="g9i-yV-CNT"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <datePicker contentMode="scaleToFill" restorationIdentifier="O_DatePicker" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="M1w-hF-CPa">
-                                <rect key="frame" x="0.0" y="306" width="375" height="120"/>
+                                <rect key="frame" x="0.0" y="376.5" width="375" height="120"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="120" id="WT5-dS-vbU"/>
                                     <constraint firstAttribute="height" constant="120" id="pH6-DW-GOA"/>
                                 </constraints>
                                 <date key="date" timeIntervalSinceReferenceDate="519572017.36589599">
                                     <!--2017-06-19 13:33:37 +0000-->
                                 </date>
                             </datePicker>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="内容" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PXi-rr-xc9">
+                                <rect key="frame" x="16" y="216" width="343" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="M1w-hF-CPa" secondAttribute="trailing" id="0ts-xC-KSC"/>
-                            <constraint firstItem="M1w-hF-CPa" firstAttribute="top" secondItem="DSb-mV-OYU" secondAttribute="bottom" constant="10" id="2Du-kP-zQN"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="DSb-mV-OYU" secondAttribute="trailing" id="8H5-pJ-EFE"/>
-                            <constraint firstItem="2Of-Te-kG7" firstAttribute="leading" secondItem="7Oh-Fl-Fe4" secondAttribute="leadingMargin" id="FbE-08-kDI"/>
-                            <constraint firstItem="HbL-do-pnO" firstAttribute="leading" secondItem="7Oh-Fl-Fe4" secondAttribute="leadingMargin" id="KGq-Q8-lDG"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="2Of-Te-kG7" secondAttribute="trailing" id="Lz9-oT-aJg"/>
-                            <constraint firstItem="PXi-rr-xc9" firstAttribute="top" secondItem="2Of-Te-kG7" secondAttribute="bottom" constant="10" id="Sb4-dA-BQt"/>
-                            <constraint firstItem="DSb-mV-OYU" firstAttribute="top" secondItem="PXi-rr-xc9" secondAttribute="bottom" constant="10" id="TvQ-GG-m4M"/>
-                            <constraint firstItem="2Of-Te-kG7" firstAttribute="top" secondItem="HbL-do-pnO" secondAttribute="bottom" constant="10" id="WIJ-YK-1xu"/>
-                            <constraint firstItem="DSb-mV-OYU" firstAttribute="leading" secondItem="7Oh-Fl-Fe4" secondAttribute="leadingMargin" id="iAJ-fs-YNO"/>
-                            <constraint firstItem="PXi-rr-xc9" firstAttribute="leading" secondItem="7Oh-Fl-Fe4" secondAttribute="leadingMargin" id="mKY-aL-Mee"/>
-                            <constraint firstItem="M1w-hF-CPa" firstAttribute="leading" secondItem="7Oh-Fl-Fe4" secondAttribute="leading" id="vce-Vk-0vm"/>
-                            <constraint firstItem="HbL-do-pnO" firstAttribute="top" secondItem="zML-UN-fg3" secondAttribute="bottom" constant="10" id="ycu-S8-5q3"/>
+                            <constraint firstItem="PXi-rr-xc9" firstAttribute="top" secondItem="2Of-Te-kG7" secondAttribute="bottom" constant="10" id="2os-PF-0Go"/>
+                            <constraint firstItem="M1w-hF-CPa" firstAttribute="top" secondItem="DSb-mV-OYU" secondAttribute="bottom" constant="10" id="2vp-Ym-JJU"/>
+                            <constraint firstItem="1yv-mb-urn" firstAttribute="trailing" secondItem="7Oh-Fl-Fe4" secondAttribute="trailingMargin" id="6TF-9V-yZX"/>
+                            <constraint firstItem="DSb-mV-OYU" firstAttribute="leading" secondItem="7Oh-Fl-Fe4" secondAttribute="leadingMargin" id="6Xz-RJ-QFg"/>
+                            <constraint firstItem="HbL-do-pnO" firstAttribute="leading" secondItem="7Oh-Fl-Fe4" secondAttribute="leadingMargin" id="7Aj-A2-Rlp"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="HbL-do-pnO" secondAttribute="trailing" id="Aea-bL-3vN"/>
+                            <constraint firstItem="1yv-mb-urn" firstAttribute="leading" secondItem="7Oh-Fl-Fe4" secondAttribute="leadingMargin" id="GhG-UW-h2S"/>
+                            <constraint firstItem="2Of-Te-kG7" firstAttribute="trailing" secondItem="7Oh-Fl-Fe4" secondAttribute="trailingMargin" id="MPb-rZ-X9I"/>
+                            <constraint firstItem="2Of-Te-kG7" firstAttribute="leading" secondItem="7Oh-Fl-Fe4" secondAttribute="leadingMargin" id="NG2-zg-ZCJ"/>
+                            <constraint firstItem="HbL-do-pnO" firstAttribute="top" secondItem="5yw-v5-YHp" secondAttribute="bottom" constant="10" id="Ruj-Be-yJG"/>
+                            <constraint firstItem="2Of-Te-kG7" firstAttribute="top" secondItem="HbL-do-pnO" secondAttribute="bottom" constant="10" id="VfM-Bs-dC4"/>
+                            <constraint firstItem="1yv-mb-urn" firstAttribute="top" secondItem="zML-UN-fg3" secondAttribute="bottom" constant="10" id="X79-25-Y9e"/>
+                            <constraint firstItem="5yw-v5-YHp" firstAttribute="leading" secondItem="7Oh-Fl-Fe4" secondAttribute="leadingMargin" id="ZGO-ml-GeH"/>
+                            <constraint firstItem="DSb-mV-OYU" firstAttribute="top" secondItem="PXi-rr-xc9" secondAttribute="bottom" constant="10" id="bmQ-vF-i2N"/>
+                            <constraint firstItem="PXi-rr-xc9" firstAttribute="leading" secondItem="7Oh-Fl-Fe4" secondAttribute="leadingMargin" id="bod-2R-Mom"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="PXi-rr-xc9" secondAttribute="trailing" id="dsZ-5h-FXi"/>
+                            <constraint firstItem="DSb-mV-OYU" firstAttribute="trailing" secondItem="7Oh-Fl-Fe4" secondAttribute="trailingMargin" id="j5G-Jf-TBf"/>
+                            <constraint firstItem="M1w-hF-CPa" firstAttribute="leading" secondItem="7Oh-Fl-Fe4" secondAttribute="leading" id="rLF-aS-QFt"/>
+                            <constraint firstItem="5yw-v5-YHp" firstAttribute="top" secondItem="1yv-mb-urn" secondAttribute="bottom" constant="10" id="u7b-OX-pfM"/>
+                            <constraint firstAttribute="trailing" secondItem="M1w-hF-CPa" secondAttribute="trailing" id="uiS-ph-GHr"/>
+                            <constraint firstItem="5yw-v5-YHp" firstAttribute="trailing" secondItem="7Oh-Fl-Fe4" secondAttribute="trailingMargin" id="xtF-CX-4ve"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="O_CategoryTextField" destination="5yw-v5-YHp" id="T8W-RO-U7D"/>
                         <outlet property="O_ContentsTextView" destination="DSb-mV-OYU" id="HYS-rR-kkm"/>
                         <outlet property="O_DatePicker" destination="M1w-hF-CPa" id="BFV-g3-d1w"/>
                         <outlet property="O_TitleTextField" destination="2Of-Te-kG7" id="DkY-iF-PNQ"/>

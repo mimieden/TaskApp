@@ -16,6 +16,8 @@ class InputViewController: UIViewController {
 // グローバル変数/定数
 //==================================================
 //--Outlet(RestrationIDもセット!)---------------------
+    //カテゴリ(テキストフィールド)のOutlet *課題
+    @IBOutlet weak var O_CategoryTextField: UITextField!
     //タイトル(テキストフィールド)のOutlet
     @IBOutlet weak var O_TitleTextField: UITextField!
     //内容(TextView)のOutlet
@@ -38,6 +40,7 @@ class InputViewController: UIViewController {
         let l_TapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(F_DismissKeyboard))
         self.view.addGestureRecognizer(l_TapGesture)
         
+            O_CategoryTextField.text = V_Task.category  // *課題
             O_TitleTextField.text = V_Task.title
             O_ContentsTextView.text = V_Task.contents
             O_DatePicker.date = V_Task.date as Date
@@ -47,6 +50,7 @@ class InputViewController: UIViewController {
     // 追加する
     override func viewWillDisappear(_ animated: Bool) {
         try! L_Realm.write {
+            self.V_Task.category = self.O_CategoryTextField.text!  // *課題
             self.V_Task.title = self.O_TitleTextField.text!
             self.V_Task.contents = self.O_ContentsTextView.text
             self.V_Task.date = self.O_DatePicker.date as NSDate
@@ -73,9 +77,10 @@ class InputViewController: UIViewController {
         view.endEditing(true)
     }
     
-//--スクのローカル通知を登録する-------------------------
+//--タスクのローカル通知を登録する-------------------------
     func F_SetNotification(A_Task: Task) {          //A:引数
         let l_Content = UNMutableNotificationContent()
+        // カテゴリは通知には表示しない *課題
         l_Content.title = A_Task.title
         l_Content.body  = A_Task.contents
         l_Content.sound = UNNotificationSound.default()  //空だと音しかしない
