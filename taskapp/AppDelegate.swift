@@ -10,7 +10,7 @@ import UIKit
 import UserNotifications  //追加
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
 
@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let l_Center = UNUserNotificationCenter.current()
         l_Center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
         }
-        l_Center.delegate = self as? UNUserNotificationCenterDelegate; //追加
+        l_Center.delegate = self; //追加
         return true
     }
     
