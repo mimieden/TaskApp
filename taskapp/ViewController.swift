@@ -19,6 +19,7 @@
 
 import UIKit
 import RealmSwift // (6.6)
+import UserNotifications //追加
 
 //テーブルビューのデリゲート設定
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -103,10 +104,27 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt
         indexPath: IndexPath) {
         if editingStyle == UITableViewCellEditingStyle.delete {
+
+            //削除されたタスクを取得する
+            let l_Task = self.V_TaskArray[indexPath.row]
+            
+            //ローカル通知をキャンセルする
+            let l_Center = UNUserNotificationCenter.current()
+            l_Center.removePendingNotificationRequests(withIdentifiers: [String(l_Task.id)])
+            
             //データベースから削除する
             try! L_Realm.write {
                 self.L_Realm.delete(self.V_TaskArray[indexPath.row])
                 tableView.deleteRows(at: [indexPath as IndexPath], with: UITableViewRowAnimation.fade)
+            }
+            
+            // 未通知のローカル通知一覧をログ出力
+            l_Center.getPendingNotificationRequests { (requests: [UNNotificationRequest]) in
+                for request in requests {
+                    print("/---------------")
+                    print(request)
+                    print("---------------/")
+                }
             }
         }
     }

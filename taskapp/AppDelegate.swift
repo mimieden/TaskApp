@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UserNotifications  //追加
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        //ユーザに通知の許可を求める
+        let l_Center = UNUserNotificationCenter.current()
+        l_Center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
+        }
         return true
     }
 

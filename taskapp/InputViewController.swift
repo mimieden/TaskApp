@@ -7,7 +7,8 @@
 //
 
 import UIKit
-import RealmSwift    // 追加する
+import RealmSwift        // 追加する
+import UserNotifications //追加
 
 class InputViewController: UIViewController {
 
@@ -45,12 +46,14 @@ class InputViewController: UIViewController {
 //--Viewが消える前------------------------------------
     // 追加する
     override func viewWillDisappear(_ animated: Bool) {
-        try! L_Realm.write {                              //ここでもnilが問題
+        try! L_Realm.write {
             self.V_Task.title = self.O_TitleTextField.text!
             self.V_Task.contents = self.O_ContentsTextView.text
             self.V_Task.date = self.O_DatePicker.date as NSDate
             self.L_Realm.add(self.V_Task, update: true)
         }
+        
+        F_SetNotification(A_Task: V_Task)   //引数A_TaskにV_Taskを渡す
         
         super.viewWillDisappear(animated)
     }
@@ -65,9 +68,39 @@ class InputViewController: UIViewController {
 //==================================================
 //  関数(その他)
 //==================================================
-//--------------------------------------------------
+//--キーボードを閉じる---------------------------------
     func F_DismissKeyboard() {
-        //キーボードを閉じる
         view.endEditing(true)
+    }
+    
+//--スクのローカル通知を登録する-------------------------
+    func F_SetNotification(A_Task: Task) {          //A:引数
+        let l_Content = UNMutableNotificationContent()
+        l_Content.title = A_Task.title
+        l_Content.body  = A_Task.contents
+        l_Content.sound = UNNotificationSound.default()  //空だと音しかしない
+        
+        //ローカル通知が発動するtrigger(日付マッチ)を作成
+        let l_Calendar = NSCalendar.current
+        let l_DateComponents = l_Calendar.dateComponents([.year, .month, .day, .hour, .minute], from: A_Task.date as Date)
+        let l_Trigger = UNCalendarNotificationTrigger.init(dateMatching: l_DateComponents, repeats: false)
+        
+        //identifier, content, triggerからローカル通知を作成（identifierが同じだとローカル通知を上書き保存）
+        let l_Request = UNNotificationRequest.init(identifier: String(A_Task.id), content: l_Content, trigger: l_Trigger)
+        
+        //ローカル通知を登録
+        let l_Center = UNUserNotificationCenter.current()
+        l_Center.add(l_Request) { (error) in
+            print (error ?? "ローカル通知登録 OK")     // error が nil ならローカル通知の登録に成功したと表示します。errorが存在すればerrorを表示します。
+        }
+        
+        //未通知のローカル通知一覧をログ出力
+        l_Center.getPendingNotificationRequests { (requests: [UNNotificationRequest]) in
+            for l_Request in requests {
+                print("/---------------")
+                print(l_Request)
+                print("---------------/")
+            }
+        }
     }
 }
