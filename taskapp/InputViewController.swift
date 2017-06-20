@@ -37,11 +37,9 @@ class InputViewController: UIViewController {
         let l_TapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(F_DismissKeyboard))
         self.view.addGestureRecognizer(l_TapGesture)
         
-        if V_Task != nil{                         //nilでエラーになるので仮に追加
             O_TitleTextField.text = V_Task.title
             O_ContentsTextView.text = V_Task.contents
             O_DatePicker.date = V_Task.date as Date
-        }                                         //nilでエラーになるので仮に追加
     }
 
 //--Viewが消える前------------------------------------

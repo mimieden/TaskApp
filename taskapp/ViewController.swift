@@ -13,7 +13,7 @@
 // ローカル定数   l_
 // 関数
 // 自由定義関数   F_ (ただし規定の関数はそのまま)
-// 規定関数 viewDidLoad() didReceiveMemoryWarning() tableView() performSegue()
+// その他        viewDidLoad() didReceiveMemoryWarning() tableView() performSegue()
 // Identifier   I_
 
 
@@ -116,13 +116,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //==================================================
 //==segueで画面遷移するときに呼び出されるメソッド==========
     override func prepare(for segue:UIStoryboardSegue, sender: Any?) {
+        
         let l_InputViewController:InputViewController = segue.destination as! InputViewController
-        if segue.identifier == "I_CellSegue" {
+        
+        if segue.identifier == "I_CellSegue" {                          //セルをタップしたとき
             let l_IndexPath = self.O_TableView.indexPathForSelectedRow
-            if l_IndexPath != nil {                                          //nilでエラーになるので仮に追加
               l_InputViewController.V_Task = V_TaskArray[l_IndexPath!.row]
-            }                                                                //nilでエラーになるので仮に追加
-        } else {
+        } else {                                                        //+ボタンをタップしたとき
             let l_Task = Task()
             l_Task.date = NSDate()
             

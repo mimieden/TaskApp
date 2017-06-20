@@ -64,13 +64,13 @@
                     <navigationItem key="navigationItem" id="vfG-F8-IAv">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="8kh-Sb-IMo">
                             <connections>
-                                <segue destination="wFt-rl-Wxp" kind="show" identifier="I_CellSegue" id="E8j-XJ-2pS"/>
+                                <segue destination="wFt-rl-Wxp" kind="show" identifier="I_Segue" id="E8j-XJ-2pS"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="O_TableView" destination="4QB-kU-IzH" id="8r6-5N-poO"/>
-                        <segue destination="wFt-rl-Wxp" kind="show" identifier="I_Segue" id="7Sq-yO-Iqu"/>
+                        <segue destination="wFt-rl-Wxp" kind="show" identifier="I_CellSegue" id="7Sq-yO-Iqu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -173,6 +173,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="E8j-XJ-2pS"/>
+        <segue reference="7Sq-yO-Iqu"/>
     </inferredMetricsTieBreakers>
 </document>
