@@ -4,25 +4,33 @@
 //
 //  Created by mimieden on 2017/06/19.
 //  Copyright © 2017年 mimieden. All rights reserved.
-//
 
-// 変数/定数
-// グローバル変数 V_ (ただしアウトレットの場合はO_)
-// グローバル定数 L_
-// ローカル変数   v_
-// ローカル定数   l_
-// 関数
-// 自由定義関数   F_ (ただし規定の関数はそのまま)
-// その他        viewDidLoad() didReceiveMemoryWarning() tableView() performSegue()
-// Identifier   I_
+//==================================================
+// Naming Rules (Constant&Variable)
+//==================================================
+//--Global------------------------------------------
+// Constant         L_                //CNS *Instans =>INS
+// Variable         V_                //WRK
+// Variable(Outlet) O_                //OUT
+//--Local-------------------------------------------
+// Constant         l_                //cns
+// Variable         v_                //wrk
+//==================================================
+// Naming Rules (Others)
+//==================================================
+//--Function----------------------------------------
+// Original         F_
+// Definined        viewDidLoad() didReceiveMemoryWarning() tableView() performSegue()
+//--From StoryBoard---------------------------------
+// Identifier       I_                //ID
+//--------------------------------------------------
 
-
+//=Import===========================================
 import UIKit
 import RealmSwift
 import UserNotifications
 
-//テーブルビューのデリゲート設定
-//サーチバーのデリゲート設定 *課題
+//=Class============================================
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,UISearchBarDelegate {
 
 //==================================================
@@ -34,10 +42,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     //サーチバーのOutlet *課題
     @IBOutlet weak var O_SearchBar: UISearchBar!
 
-//--Realmインスタンス----------------------------------
+//--インスタンス----------------------------------
+    //Realmのインスタンス
     let L_Realm = try! Realm()
-    
-//--DB内のタスク格納リスト/日付近い順で降順、内容自動更新-----
+
+//--------------------------------------------------
+    //DB内のタスク格納リスト/日付近い順で降順、内容自動更新-----
     var V_TaskArray = try! Realm().objects(Task.self).sorted(byKeyPath: "date", ascending: false)
     
 //==================================================
@@ -53,10 +63,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //--View読み込み後------------------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
-        //サーチバーのプレースホルダー設定 *課題
-        O_SearchBar.placeholder = "カテゴリを指定して絞り込み"
         
         //テーブルビューのデリゲート設定
         O_TableView.delegate = self                    //ユーザー操作
@@ -64,18 +70,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         //サーチバーのデリゲート設定 *課題
         O_SearchBar.delegate = self
+
+        //サーチバーのプレースホルダー設定 *課題
+        O_SearchBar.placeholder = "カテゴリを指定して絞り込み"
+        
         //何も入力されていなくてもReturnキーを押せるようにする。
         O_SearchBar.enablesReturnKeyAutomatically = false
     }
 
-//--------------------------------------------------
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 //==================================================
-//  関数(プロトコル指定メソッド)
+//  関数 (プロトコル指定メソッド)
 //==================================================
 //==UITableViewDataSourceプロトコルのメソッド===========
 //--データの数 (=セルの数)を返すメソッド------------------
@@ -143,34 +147,40 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //==================================================
 //  関数(検索機能)
 //==================================================
-//--検索実施時の呼び出しメソッド *課題--------------------
+//--検索実施時の呼び出しメソッド-------------------------
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        //サーチバーの編集終了 *課題
-        //O_SearchBar.endEditing(true)
         
-        //表示用のタスク一覧 *課題
-        print(O_SearchBar.text!)
-        if O_SearchBar.text == "" {  //未入力の場合は全てを表示する
+        //表示用のタスク一覧を作成
+        if O_SearchBar.text == "" {           //未入力の場合はfilter指定をせず全てを表示する
             V_TaskArray = try! Realm().objects(Task.self)
-                .sorted(byKeyPath: "date", ascending: false)
-        } else {                     //入力がある場合は指定カテゴリのタスクのみ表示
+                                      .sorted(byKeyPath: "date",
+                                       ascending: false)
+        } else {                              //入力がある場合はfilter指定で指定カテゴリのタスクのみ表示
             V_TaskArray = try! Realm().objects(Task.self)
-                                      .sorted(byKeyPath: "date", ascending: false)
+                                      .sorted(byKeyPath: "date",
+                                       ascending: false)
                                       .filter("category == '\(O_SearchBar.text!)'")
-            //for Task in V_TaskArray {                         //デバッグ用取得したタスクをプリント
+            
+//--デバッグ用----------------------------------------
+            //for Task in V_TaskArray {
             //    let l_Task = V_TaskArray[indexPath.row]
             //    print(Task.title)
             //}
+//--------------------------------------------------
         }
-        //リロード
+        
+        //キャンセルボタンを有効化してリロード
         searchBar.showsCancelButton = true
         O_TableView.reloadData()
 
     }
-
+    
+//--キャンセル時の呼び出しメソッド------------------------
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        //表示用のタスク一覧を作成
         V_TaskArray = try! Realm().objects(Task.self)
             .sorted(byKeyPath: "date", ascending: false)
+        //キャンセルボタンを無効化してリロード
         searchBar.showsCancelButton = false
         O_TableView.reloadData()
     }
@@ -195,5 +205,4 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             l_InputViewController.V_Task = l_Task
         }
     }
-
 }

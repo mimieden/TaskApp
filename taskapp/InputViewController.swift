@@ -6,10 +6,12 @@
 //  Copyright © 2017年 mimieden. All rights reserved.
 //
 
+//=Import===========================================
 import UIKit
-import RealmSwift        // 追加する
-import UserNotifications //追加
+import RealmSwift
+import UserNotifications
 
+//=Class============================================
 class InputViewController: UIViewController {
 
 //==================================================
@@ -24,10 +26,13 @@ class InputViewController: UIViewController {
     @IBOutlet weak var O_ContentsTextView: UITextView!
     //Date PickerのOutlet
     @IBOutlet weak var O_DatePicker: UIDatePicker!
+
+//--インスタンス----------------------------------
+    //Realmのインスタンス
+    let L_Realm = try! Realm()
     
 //--------------------------------------------------
     var V_Task: Task!   // 追加する
-    let L_Realm = try! Realm()
     
 //==================================================
 //  関数(ライフサイクル)
@@ -40,7 +45,7 @@ class InputViewController: UIViewController {
         let l_TapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(F_DismissKeyboard))
         self.view.addGestureRecognizer(l_TapGesture)
         
-            O_CategoryTextField.text = V_Task.category  // *課題
+            O_CategoryTextField.text = V_Task.category
             O_TitleTextField.text = V_Task.title
             O_ContentsTextView.text = V_Task.contents
             O_DatePicker.date = V_Task.date as Date
@@ -62,13 +67,6 @@ class InputViewController: UIViewController {
         super.viewWillDisappear(animated)
     }
     
-//--------------------------------------------------
-    override func didReceiveMemoryWarning() {            //テキストでは削除されているが残しておく？
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
 //==================================================
 //  関数(その他)
 //==================================================
