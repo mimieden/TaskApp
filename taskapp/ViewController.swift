@@ -76,7 +76,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         //何も入力されていなくてもReturnキーを押せるようにする。
         O_SearchBar.enablesReturnKeyAutomatically = false
+        
+        // 背景をタップしたらdismissKeyboardメソッドを呼ぶように設定する→セルのタップが効かない
+        let l_TapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(F_DismissKeyboard))
+        l_TapGesture.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(l_TapGesture)
+        //セルのタップが効くようにする 少し動きが変
     }
+    
+//    func viewWillAppear() {
 
 //==================================================
 //  関数 (プロトコル指定メソッド)
@@ -169,8 +177,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //--------------------------------------------------
         }
         
-        //キャンセルボタンを有効化してリロード
+        //キャンセルボタンを有効化してリロード/キーボードを閉じる
         searchBar.showsCancelButton = true
+        searchBar.endEditing(true)
         O_TableView.reloadData()
 
     }
@@ -180,9 +189,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         //表示用のタスク一覧を作成
         V_TaskArray = try! Realm().objects(Task.self)
             .sorted(byKeyPath: "date", ascending: false)
-        //キャンセルボタンを無効化してリロード
+        //キャンセルボタンを無効化してリロード/キーボードを閉じる
         searchBar.showsCancelButton = false
+        searchBar.endEditing(true)
+        O_SearchBar.text = ""
         O_TableView.reloadData()
+
     }
 //==================================================
 //  関数(画面遷移)
@@ -193,8 +205,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let l_InputViewController:InputViewController = segue.destination as! InputViewController
         
         if segue.identifier == "I_CellSegue" {                          //セルをタップしたとき
+            //if
+            //view.endEditing(true)
+            //else
             let l_IndexPath = self.O_TableView.indexPathForSelectedRow
               l_InputViewController.V_Task = V_TaskArray[l_IndexPath!.row]
+            //endif
         } else {                                                        //+ボタンをタップしたとき
             let l_Task = Task()
             l_Task.date = NSDate()
@@ -205,4 +221,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             l_InputViewController.V_Task = l_Task
         }
     }
+//==================================================
+//  関数(その他)
+//==================================================
+//--キーボードを閉じる---------------------------------
+// 背景をタップしたらdismissKeyboardメソッドを呼ぶように設定する
+//let l_TapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(F_DismissKeyboard))
+//self.view.addGestureRecognizer(l_TapGesture)
+
+func F_DismissKeyboard() {
+    view.endEditing(true)
+}
 }
