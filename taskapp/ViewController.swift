@@ -79,8 +79,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         // 背景をタップしたらdismissKeyboardメソッドを呼ぶように設定する→セルのタップが効かない
         let l_TapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(F_DismissKeyboard))
-        l_TapGesture.cancelsTouchesInView = false
-        self.view.addGestureRecognizer(l_TapGesture)
+        view.addGestureRecognizer(l_TapGesture)
+        //l_TapGesture.cancelsTouchesInView = false
         //セルのタップが効くようにする 少し動きが変
     }
     
@@ -205,9 +205,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let l_InputViewController:InputViewController = segue.destination as! InputViewController
         
         if segue.identifier == "I_CellSegue" {                          //セルをタップしたとき
-            //if
-            //view.endEditing(true)
-            //else
             let l_IndexPath = self.O_TableView.indexPathForSelectedRow
               l_InputViewController.V_Task = V_TaskArray[l_IndexPath!.row]
             //endif
