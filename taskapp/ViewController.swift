@@ -64,6 +64,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         //サーチバーのデリゲート設定 *課題
         O_SearchBar.delegate = self
+        //何も入力されていなくてもReturnキーを押せるようにする。
+        O_SearchBar.enablesReturnKeyAutomatically = false
     }
 
 //--------------------------------------------------
@@ -137,33 +139,41 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
         }
     }
-
+    
+//==================================================
+//  関数(検索機能)
+//==================================================
 //--検索実施時の呼び出しメソッド *課題--------------------
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         //サーチバーの編集終了 *課題
-        O_SearchBar.endEditing(true)
-        print(O_SearchBar.text as Any) //デバッグ用
+        //O_SearchBar.endEditing(true)
         
         //表示用のタスク一覧 *課題
-        //.filterオプションを宣言時に仮置きするとfilterがうまくかかっていることが確認できた
-        //V_TaskArrayに入ったデータをO_TableViewに移して、リロードするのがうまく行っていない
+        print(O_SearchBar.text!)
         if O_SearchBar.text == "" {  //未入力の場合は全てを表示する
+            V_TaskArray = try! Realm().objects(Task.self)
+                .sorted(byKeyPath: "date", ascending: false)
         } else {                     //入力がある場合は指定カテゴリのタスクのみ表示
             V_TaskArray = try! Realm().objects(Task.self)
                                       .sorted(byKeyPath: "date", ascending: false)
-                                      .filter("category == '/O_SearchBar.text'")
-
-            
-            //これがいるのか
-            //--データの数 (=セルの数)を返すメソッド------------------
-            //--各セルの内容を返すメソッド---------------------------
-            
-            //リロード
-            O_TableView.reloadData()
+                                      .filter("category == '\(O_SearchBar.text!)'")
+            //for Task in V_TaskArray {                         //デバッグ用取得したタスクをプリント
+            //    let l_Task = V_TaskArray[indexPath.row]
+            //    print(Task.title)
+            //}
         }
+        //リロード
+        searchBar.showsCancelButton = true
+        O_TableView.reloadData()
+
     }
 
-    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        V_TaskArray = try! Realm().objects(Task.self)
+            .sorted(byKeyPath: "date", ascending: false)
+        searchBar.showsCancelButton = false
+        O_TableView.reloadData()
+    }
 //==================================================
 //  関数(画面遷移)
 //==================================================
