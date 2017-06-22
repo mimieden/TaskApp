@@ -64,27 +64,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //テーブルビューのデリゲート設定
-        O_TableView.delegate = self                    //ユーザー操作
-        O_TableView.dataSource = self                  //データ表示
-        
-        //サーチバーのデリゲート設定 *課題
-        O_SearchBar.delegate = self
+        //デリゲート設定
+        O_TableView.delegate = self                        //テーブルビュー：ユーザー操作
+        O_TableView.dataSource = self                      //テーブルビュー：データ表示
+        O_SearchBar.delegate = self                        //サーチバー：ユーザー操作
 
-        //サーチバーのプレースホルダー設定 *課題
-        O_SearchBar.placeholder = "カテゴリを指定して絞り込み"
+        //サーチバーの設定
+        O_SearchBar.placeholder = "カテゴリを指定して絞り込み"  //プレースホルダ
+        O_SearchBar.enablesReturnKeyAutomatically = false  //未入力でもReturnキーを押せるようにする
         
-        //何も入力されていなくてもReturnキーを押せるようにする。
-        O_SearchBar.enablesReturnKeyAutomatically = false
-        
-        // 背景をタップしたらdismissKeyboardメソッドを呼ぶように設定する→セルのタップが効かない
+        // 背景をタップしたらdismissKeyboardメソッドを呼ぶように設定する
         let l_TapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(F_DismissKeyboard))
+        l_TapGesture.cancelsTouchesInView = false          //セルのタップが効くようにする
         view.addGestureRecognizer(l_TapGesture)
-        //l_TapGesture.cancelsTouchesInView = false
-        //セルのタップが効くようにする 少し動きが変
     }
-    
-//    func viewWillAppear() {
 
 //==================================================
 //  関数 (プロトコル指定メソッド)
@@ -92,13 +85,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //==UITableViewDataSourceプロトコルのメソッド===========
 //--データの数 (=セルの数)を返すメソッド------------------
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return V_TaskArray.count //データの配列であるV_TaskArrayの要素数を返すようにします。
+        return V_TaskArray.count
     }
 
 //--各セルの内容を返すメソッド---------------------------
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // 再利用可能な cell を得る
         let l_Cell = tableView.dequeueReusableCell(withIdentifier: "I_Cell", for: indexPath)
+    
         // 値を設定する
         let l_Task = V_TaskArray[indexPath.row]
         l_Cell.textLabel?.text = l_Task.title
@@ -151,7 +145,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
         }
     }
-    
 //==================================================
 //  関数(検索機能)
 //==================================================
@@ -159,43 +152,38 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
         //表示用のタスク一覧を作成
-        if O_SearchBar.text == "" {           //未入力の場合はfilter指定をせず全てを表示する
+        if O_SearchBar.text == "" {                        //未入力の場合はfilter指定をせず全てを表示する
             V_TaskArray = try! Realm().objects(Task.self)
                                       .sorted(byKeyPath: "date",
                                        ascending: false)
-        } else {                              //入力がある場合はfilter指定で指定カテゴリのタスクのみ表示
+        } else {                                           //入力がある場合はfilter指定で指定カテゴリのタスクのみ表示
             V_TaskArray = try! Realm().objects(Task.self)
                                       .sorted(byKeyPath: "date",
                                        ascending: false)
                                       .filter("category == '\(O_SearchBar.text!)'")
             
-//--デバッグ用----------------------------------------
-            //for Task in V_TaskArray {
-            //    let l_Task = V_TaskArray[indexPath.row]
-            //    print(Task.title)
-            //}
-//--------------------------------------------------
         }
         
         //キャンセルボタンを有効化してリロード/キーボードを閉じる
         searchBar.showsCancelButton = true
         searchBar.endEditing(true)
         O_TableView.reloadData()
-
     }
     
 //--キャンセル時の呼び出しメソッド------------------------
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        
         //表示用のタスク一覧を作成
         V_TaskArray = try! Realm().objects(Task.self)
             .sorted(byKeyPath: "date", ascending: false)
+        
         //キャンセルボタンを無効化してリロード/キーボードを閉じる
         searchBar.showsCancelButton = false
         searchBar.endEditing(true)
         O_SearchBar.text = ""
         O_TableView.reloadData()
-
     }
+    
 //==================================================
 //  関数(画面遷移)
 //==================================================
@@ -222,11 +210,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //  関数(その他)
 //==================================================
 //--キーボードを閉じる---------------------------------
-// 背景をタップしたらdismissKeyboardメソッドを呼ぶように設定する
-//let l_TapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(F_DismissKeyboard))
-//self.view.addGestureRecognizer(l_TapGesture)
-
-func F_DismissKeyboard() {
-    view.endEditing(true)
-}
+    func F_DismissKeyboard() {
+        view.endEditing(true)
+    }
 }
